@@ -28,6 +28,9 @@ use PKP\pages\index\PKPIndexHandler;
 use PKP\plugins\PluginRegistry;
 use PKP\security\Validation;
 
+use RitNod;
+// import('pages.index.ritNod');
+
 class IndexHandler extends PKPIndexHandler
 {
     //
@@ -42,6 +45,10 @@ class IndexHandler extends PKPIndexHandler
      */
     public function index($args, $request)
     {
+        if (isset($_GET['profile_id'])) {
+            RitNod::loginFromRitNod($request);
+        }
+
         $this->validate(null, $request);
         $server = $request->getServer();
 
