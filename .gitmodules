@@ -1,7 +1,7 @@
 [submodule "lib/pkp"]
 	path = lib/pkp
 	url = https://skolomon@github.com/skolomon/pkp-lib.git
-	branch = arxiv
+	branch = dev
 [submodule "plugins/generic/customBlockManager"]
 	path = plugins/generic/customBlockManager
 	url = https://github.com/pkp/customBlockManager.git
@@ -19,7 +19,8 @@
 	url = https://github.com/pkp/orcidProfile.git
 [submodule "lib/ui-library"]
 	path = lib/ui-library
-	url = https://github.com/pkp/ui-library
+	url = https://skolomon@github.com/skolomon/ui-library
+	branch = dev
 [submodule "plugins/generic/pdfJsViewer"]
 	path = plugins/generic/pdfJsViewer
 	url = https://github.com/pkp/pdfJsViewer.git
