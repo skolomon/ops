@@ -29,7 +29,7 @@ use PKP\plugins\PluginRegistry;
 use PKP\security\Validation;
 
 use RitNod;
-// import('pages.index.ritNod');
+import('pages.index.ritNod');
 
 class IndexHandler extends PKPIndexHandler
 {
