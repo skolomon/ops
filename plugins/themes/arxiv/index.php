@@ -12,4 +12,4 @@
  *
  */
 
-return new \APP\plugins\themes\default\ArxivThemePlugin();
+return new \APP\plugins\themes\arxiv\ArxivThemePlugin();
