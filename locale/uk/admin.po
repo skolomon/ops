@@ -1,0 +1,96 @@
+# MarynaMaslova <mma021038@gmail.com>, 2023
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13T08:00:00+02:00\n"
+"PO-Revision-Date: 2023-04-26:T08:00:00+02:00\n"
+"Last-Translator: MarynaMaslova <mma021038@gmail.com>\n"
+"Language-Team:Ukrainian \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+msgid "admin.hostedContexts"
+msgstr "Розгорнуті сервери"
+
+msgid "admin.settings.redirect"
+msgstr "Перенаправлення на сервер"
+
+msgid "admin.settings.redirectInstructions"
+msgstr ""
+"Запити до основного сайту будуть перенаправлені на цей сервер. Це може бути"
+" корисно, наприклад, якщо на сайті розміщено лише один сервер."
+
+msgid "admin.languages.confirmDisable"
+msgstr ""
+"Ви впевнені, що бажаєте вимкнути цю мову? Це може вплинути на будь-який розгорнуті"
+" сервери, які зараз використовують цю мову."
+
+msgid "admin.locale.maybeIncomplete"
+msgstr "Позначені локалі можуть бути неповними."
+
+msgid "admin.languages.confirmUninstall"
+msgstr ""
+" Ви впевнені, що бажаєте видалити цю мову? Це може вплинути на будь-який розгорнуті "
+" сервери, які зараз використовують цю мову."
+
+msgid "admin.languages.installNewLocalesInstructions"
+msgstr ""
+" Виберіть будь-які додаткові мови для інсталяції підтримки в цій системі. Мови "
+" потрібно встановити, перш ніж їх можна буде використовувати на розміщених серверах. Див. "
+" документацію OPS з інформацією про додавання підтримки нових мов."
+
+msgid "admin.languages.localeInstalled"
+msgstr "Мовальний код \"{$locale}\" встановлено."
+msgid "admin.systemConfiguration"
+msgstr "Конфігурація OPS"
+
+msgid "admin.contexts.create"
+msgstr "Створити сервер"
+
+msgid "admin.contexts.form.pathAlphaNumeric"
+msgstr ""
+" Шлях може містити лише літери, цифри та символи _ і -. Це "
+" має починатися і закінчуватися буквою або цифрою."
+
+msgid "admin.contexts.form.pathExists"
+msgstr "Вказаний вами шлях уже використовується іншим сервером".
+
+msgid "admin.contexts.form.primaryLocaleNotSupported"
+msgstr "Основна мова має бути однією з підтримуваних сервером мови."
+
+msgid "admin.contexts.contextDescription"
+msgstr "Опис сервера"
+
+msgid "admin.contexts.enableContextInstructions"
+msgstr "Увімкніть цей сервер препринтів для публічного відображення на сайті"
+
+msgid "admin.settings.enableBulkEmails.description"
+msgstr ""
+" Виберіть розміщені сервери, яким має бути дозволено надсилати масові електронні листи. Коли"
+" цю функцію ввімкнено, менеджер сервера зможе надіслати електронний лист"
+" усі користувачі, зареєстровані на своєму сервері.<br><br>Зловживання цією функцією для"
+" надсилання небажаної електронної пошти може порушувати закони про боротьбу зі спамом у деяких юрисдикціях і"
+" може призвести до блокування електронних листів вашого сервера як спаму. Шукайте технічну"
+" перед увімкненням цієї функції та проконсультуйтеся з сервером"
+" менеджери, щоб забезпечити його належне використання.<br><br>Подальші обмеження щодо "
+" цю функцію можна ввімкнути для кожного сервера, відвідавши його майстер налаштувань "
+" в списку <a href=\"{$hostedContextsUrl}\">Розгорнутих серверів</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.description"
+msgstr ""
+"Менеджер сервера не зможе надсилати масові електронні листи жодній із ролей"
+" вибрано нижче. Використовуйте це налаштування, щоб обмежити зловживання сповіщенням електронною поштою"
+" функція Наприклад, може бути безпечніше вимкнути масову розсилку електронних листів читачам,"
+" автори або інші великі групи користувачів, які не дали згоди на їх отримання"
+" електронні листи.<br><br>Для цього функцію масової електронної пошти можна повністю вимкнути"
+" сервер в <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."
+
+msgid "admin.settings.disableBulkEmailRoles.contextDisabled"
+msgstr ""
+"Функцію масової електронної пошти вимкнено для цього сервера. Увімкніть це"
+" особливість в <a href=\"{$siteSettingsUrl}\">Admin > Site Settings</a>."

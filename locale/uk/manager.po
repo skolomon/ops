@@ -1,0 +1,510 @@
+# MarynaMaslova <mma021038@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13T08:00:00+02:00\n"
+"PO-Revision-Date: 2023-04-26 T08:00:00+02:00\n"
+"Last-Translator: MarynaMaslova <mma021038@gmail.com>\n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/ojs/manager/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "manager.distribution.access"
+msgstr "Доступ"
+
+msgid "manager.distribution.copyrightYearBasis.description"
+msgstr ""
+"Виберіть спосіб вибору дати авторського права за умовчанням для препринтів. це "
+" за умовчанням можна змінити в кожному конкретному випадку."
+
+msgid "manager.distribution.copyrightYearBasis.submission"
+msgstr "Use the preprint's posted date"
+
+msgid "manager.distribution.publishingMode"
+msgstr "Режим публікації"
+
+msgid "manager.distribution.publishingMode.none"
+msgstr "OPS не використовуватиметься для публікації вмісту сервера в Інтернеті."
+
+msgid "manager.distribution.publishingMode.openAccess"
+msgstr "Сервер надасть відкритий доступ до свого вмісту."
+
+msgid "manager.language.ui"
+msgstr "UI"
+
+msgid "manager.language.submissions"
+msgstr "Подання"
+
+msgid "manager.language.forms"
+msgstr "Форми"
+
+msgid "manager.language.confirmDefaultSettingsOverwrite"
+msgstr ""
+"Це замінить будь-які налаштування сервера, які ви мали для цієї мови"
+
+msgid "manager.people.allUsers"
+msgstr "Усі зареєстровані користувачі"
+
+msgid "manager.people.confirmRemove"
+msgstr ""
+"Видалити цього користувача з цього сервера? Ця дія скасує реєстрацію користувача з "
+" усі ролі на цьому сервері."
+
+msgid "manager.sections.abstractsNotRequired"
+msgstr "Не вимагають тез"
+
+msgid "manager.section.noSectionEditors"
+msgstr ""
+"Модераторів ще немає. Додайте цю роль принаймні одному користувачеві за допомогою "
+« Менеджмент > Налаштування > Користувачі &amp; Перші ролі."
+
+msgid "manager.sections.confirmDelete"
+msgstr "Ви впевнені, що хочете остаточно видалити цей розділ?"
+
+msgid "manager.sections.alertDelete"
+msgstr ""
+"Перш ніж цей розділ можна буде видалити, ви повинні перемістити препринти, опубліковані в ньому "
+" в інший розділ."
+
+msgid "manager.sections.create"
+msgstr "Створити розділ"
+
+msgid "manager.sections.editorRestriction"
+msgstr "Заяви можуть надсилати лише менеджери та модератори."
+
+msgid "manager.sections.confirmDeactivateSection.error"
+msgstr ""
+"Принаймні один розділ має бути активним. Відвідайте параметри робочого процесу, щоб вимкнути "
+" усі подання на цей сервер."
+
+msgid "manager.sections.form.abbrevRequired"
+msgstr "Для розділу обов’язкова скорочена назва"
+
+msgid "manager.setup.form.section.pathRequired"
+msgstr "Для розділу потрібен URL-шлях"
+
+msgid "manager.sections.identifyType"
+msgstr "Визначте елементи, опубліковані в цьому розділі, як (n)"
+
+msgid "manager.sections.identifyTypeExamples"
+msgstr "(Наприклад тощо)"
+
+msgid "manager.sections.policy"
+msgstr "Політики розділу"
+
+msgid "manager.sections.submissionIndexing"
+msgstr "Не буде включено в індексацію сервера"
+
+msgid "manager.sections.wordCount"
+msgstr "Підрахунок слів"
+
+msgid "manager.sections.wordCountInstructions"
+msgstr "Обмеження кількості абстрактних слів для цього розділу (0 без обмежень)"
+
+msgid "manager.setup"
+msgstr "Налаштування сервера"
+
+msgid "manager.setup.masthead"
+msgstr "Заголовок"
+
+msgid "manager.setup.editorialTeam"
+msgstr "Команда сервера препринтів"
+
+msgid "manager.setup.useStyleSheet"
+msgstr "Таблиця стилів сервера"
+
+msgid "manager.setup.announcements"
+msgstr "Оголошення"
+
+msgid "manager.setup.announcementsIntroduction"
+msgstr "вступ"
+
+msgid "manager.setup.announcementsIntroduction.description"
+msgstr "
+"Введіть будь-яку інформацію, яку ви хочете відображати на своїй сторінці оголошень."
+
+msgid "manager.setup.authorScreening"
+msgstr "Плагіни перевірки авторів"
+
+msgid "manager.setup.disableUserRegistration"
+msgstr "Менеджер сервера зареєструє всі облікові записи користувачів."
+
+msgid "manager.setup.emailBounceAddress"
+msgstr "Адреса відмов"
+
+msgid "manager.setup.emailBounceAddress.description"
+msgstr ""
+"Будь-які повідомлення електронної пошти, які неможливо доставити, призведуть до повідомлення про помилку на цю адресу."
+
+msgid "manager.setup.emailBounceAddress.disabled"
+msgstr ""
+"Для надсилання електронних листів, які неможливо доставити, на адресу відмов, сайт "
+" адміністратор повинен увімкнути <code>allow_envelope_sender</code> варіант в "
+" конфігураційний файл сайту. Може знадобитися налаштування сервера, як "
+" зазначено в документації OPS."
+
+msgid "manager.setup.emailSignature"
+msgstr "Підпис"
+
+msgid "manager.setup.emailSignature.description"
+msgstr ""
+"Підготовлені електронні листи, які надсилаються системою від імені сервера, будуть "
+" додайте наступний підпис у кінці."
+
+msgid "manager.setup.enableAnnouncements.enable"
+msgstr "Увімкнути оголошення"
+
+msgid "manager.setup.enableAnnouncements.description"
+msgstr ""
+"Оголошення можуть публікуватися, щоб інформувати читачів про новини та події сервера. "
+" Опубліковані оголошення відображатимуться на сторінці «Оголошення»."
+
+msgid "manager.setup.numAnnouncementsHomepage"
+msgstr "Показати на домашній сторінці"
+
+msgid "manager.setup.numAnnouncementsHomepage.description"
+msgstr ""
+"Скільки оголошень відображати на головній сторінці. Залиште це поле пустим для "
+" не відображати."
+
+msgid "manager.setup.enableUserRegistration"
+msgstr "Відвідувачі можуть зареєструвати обліковий запис користувача на сервері."
+
+msgid "manager.setup.identity"
+msgstr "Посвідчення сервера препринтів"
+
+msgid "manager.setup.information"
+msgstr "Інформація"
+
+msgid "manager.setup.information.description"
+msgstr ""
+"Короткі описи сервера для бібліотекарів і майбутніх авторів і "
+" читачі. Вони доступні на бічній панелі сайту, коли інформація "
+" додано блок."
+
+msgid "manager.setup.information.forAuthors"
+msgstr "Для авторів"
+
+msgid "manager.setup.information.forLibrarians"
+msgstr "Для бібліотекарів"
+
+msgid "manager.setup.information.forReaders"
+msgstr "Для читачів"
+
+msgid "manager.setup.itemsPerPage"
+msgstr "Елементів на сторінці"
+
+msgid "manager.setup.itemsPerPage.description"
+msgstr ""
+"Обмежте кількість елементів (наприклад, подання, користувачі або редагування "
+" призначення), щоб показати в списку перед показом наступних елементів в іншому "
+" сторінка."
+
+msgid "manager.setup.journalAbbreviation"
+msgstr "Абревіатура сервера"
+
+msgid "manager.setup.contextSummary"
+msgstr "Короткий опис сервера"
+
+msgid "manager.setup.contextAbout"
+msgstr "Про сервер"
+
+msgid "manager.setup.contextAbout.description"
+msgstr ""
+"Включіть будь-яку інформацію про ваш сервер, яка може зацікавити "
+" читачів або авторів. Це може включати вашу політику відкритого доступу, фокус "
+" і обсяг сервера, політика щодо модерації та перевірки, авторське право "
+" повідомлення, розкриття інформації про спонсорство, історія сервера та конфіденційність"
+" заява."
+
+msgid "manager.setup.contextInitials"
+msgstr "Ініціали сервера"
+
+msgid "manager.setup.serverThumbnail"
+msgstr "Мініатюра сервера"
+
+msgid "manager.setup.serverThumbnail.description"
+msgstr ""
+"Невеликий логотип або зображення сервера, яке можна використовувати в списках "
+"сервери."
+
+msgid "manager.setup.contextTitle"
+msgstr "Назва сервера"
+
+msgid "manager.setup.keyInfo"
+msgstr "Ключова інформація"
+
+msgid "manager.setup.keyInfo.description"
+msgstr ""
+"Надайте опис вашого сервера та визначте керівника(ів) попереднього друку та "
+"інші члени команди сервера препринтів."
+
+msgid "manager.setup.lists"
+msgstr "списки"
+
+msgid "manager.setup.numPageLinks"
+msgstr "Посилання на сторінки"
+
+msgid "manager.setup.numPageLinks.description"
+msgstr "Обмежте кількість посилань для відображення наступних сторінок у списку."
+
+msgid "manager.setup.restrictArticleAccess"
+msgstr "Користувачі повинні бути зареєстровані та авторизуватися, щоб переглядати вміст відкритого доступу."
+
+msgid "manager.setup.restrictSiteAccess"
+msgstr "Користувачі повинні бути зареєстровані та авторизуватися для перегляду сайту сервера."
+
+msgid "manager.setup.searchEngineIndexing"
+msgstr "Індексація пошуку"
+
+msgid "manager.setup.searchEngineIndexing.description"
+msgstr ""
+"Допоможіть пошуковим системам, таким як Google, знайти та відобразити ваш сайт. Ти є "
+"заохочуємо подати ваші <a href=\"{$sitemapUrl}\" target=\"_blank"
+"\">sitemap</a>."
+
+msgid "manager.setup.searchDescription.description"
+msgstr ""
+"Надайте короткий опис (50-300 символів) сервера, який шукає "
+" модулі можуть відображатися під час переліку сервера в результатах пошуку."
+
+msgid "manager.setup.siteAccess.view"
+msgstr "Доступ до сайту"
+
+msgid "manager.setup.siteAccess.viewContent"
+msgstr "Переглянути вміст препринтів"
+
+msgid "manager.setup.sponsoringOrganization"
+msgstr "Спонсорська організація"
+
+msgid "manager.setup.submissionPreparationChecklist"
+msgstr "Контрольний список для підготовки подання"
+
+msgid "manager.setup.disableSubmissions.description"
+msgstr ""
+"Заборонити користувачам надсилати нові препринти на сервер. Подання можна "
+" вимкнути для окремих розділів сервера на сторінці налаштувань <a href=\"{$url}\">розділів сервера</a>."
+
+msgid "manager.setup.disableSubmissions.notAccepting"
+msgstr ""
+"Цей сервер наразі не приймає подання. Відвідайте робочий процес "
+" налаштування для дозволу подання."
+
+msgid "manager.setup.enableOai"
+msgstr "Цей сервер наразі не приймає подання. Відвідайте робочий процес "
+" налаштування для дозволу подання"
+
+msgid "manager.setup.enableOai.description"
+msgstr ""
+"Надавати метадані стороннім службам індексування через <a href="
+"\"https://www.openarchives.org/\">Open Archives Initiative</a>."
+
+msgid "manager.setup.userRegistration"
+msgstr "Реєстрація користувача"
+
+msgid "manager.statistics.defaultMetricDescription"
+msgstr ""
+"\t\tВаш сервер налаштовано на запис кількох показників використання. Використання "
+" статистика буде відображатися в кількох контекстах.\t\tБувають випадки, коли "
+" потрібно використовувати статистику одного використання, наприклад, щоб відобразити впорядкований список більшості-"
+" використані препринти або для ранжирування\t\результатів пошуку. Виберіть один із "
+" налаштовані показники за замовчуванням."
+
+msgid "manager.statistics.statistics"
+msgstr "Статистика сервера"
+
+msgid "manager.statistics.statistics.articleViews"
+msgstr "Кількість переглядів препринтів (лише для авторів)"
+
+msgid "manager.statistics.statistics.count.accept"
+msgstr "прийняти"
+
+msgid "manager.statistics.statistics.count.decline"
+msgstr "відхилити"
+
+msgid "manager.statistics.statistics.count.revise"
+msgstr "Надіслати повторно"
+
+msgid "manager.statistics.statistics.daysToPublication"
+msgstr "Кілька днів до друку"
+
+msgid "manager.statistics.statistics.itemsPublished"
+msgstr "Товари опубліковано"
+
+msgid "manager.statistics.statistics.makePublic"
+msgstr "Перевірте елементи, які будуть доступні для читачів у розділі Про сервер."
+
+msgid "manager.statistics.statistics.note"
+msgstr ""
+"Примітка. Сума відсотків рецензованих заявок може не становити 100%, оскільки "
+" предмети, подані повторно, або прийняті, або відхилені, або ще в процесі."
+
+msgid "manager.statistics.statistics.numSubmissions"
+msgstr "Усього поданих"
+
+msgid "manager.statistics.statistics.registeredReaders"
+msgstr "Зареєстровані читачі"
+
+msgid "manager.statistics.reports.defaultReport.articleDownloads"
+msgstr "Завантаження файлів препринтів"
+
+msgid "manager.statistics.reports.defaultReport.articleAbstract"
+msgstr "Перегляди сторінки реферату препринтів"
+
+msgid "manager.statistics.reports.defaultReport.journalIndexPageViews"
+msgstr "Перегляд головної сторінки сервера"
+
+msgid "manager.statistics.reports.filters.byObject.description"
+msgstr ""
+"Звужте результати за типом об’єкта (сервер, препринт, типи файлів) та/або одним "
+" або кілька ідентифікаторів об'єктів."
+
+msgid "grid.category.path"
+msgstr "шлях"
+
+msgid "manager.publication.library"
+msgstr "Серверна бібліотека препринтів"
+
+msgid "manager.setup.resetPermissions"
+msgstr "Скинути дозволи попереднього друку"
+
+msgid "manager.setup.resetPermissions.confirm"
+msgstr ""
+"Ви впевнені, що бажаєте скинути дані дозволів для всіх препринтів? це "
+" дію не можна скасувати."
+
+msgid "manager.setup.resetPermissions.description"
+msgstr ""
+"Видаліть заяву про авторські права та інформацію про ліцензію для кожного опублікованого "
+" препринт, повертаючи їх до поточних налаштувань сервера за замовчуванням. Це буде "
+" назавжди видалити всю попередню інформацію про авторські права та ліцензії, додану до "
+" препринти. У деяких випадках вам може бути заборонено переліцензувати"
+" твір, опублікований за іншою ліцензією. Будь ласка, будьте обережні"
+" користуючись цим інструментом, зверніться до юридичних експертів, якщо ви не впевнені, що "
+" права, які ви маєте на препринти, розміщені на вашому сервері."
+
+msgid "manager.setup.resetPermissions.success"
+msgstr "Дозволи попереднього друку успішно скинуто."
+
+msgid "grid.genres.title.short"
+msgstr "компоненти"
+
+msgid "grid.genres.title"
+msgstr "Компоненти препринтів"
+
+msgid "plugins.importexport.common.settings"
+msgstr "Налаштування"
+
+msgid "plugins.importexport.common.settings.DOIPluginSettings"
+msgstr "Налаштування плагіна DOI"
+
+msgid "plugins.importexport.common.export.articles"
+msgstr "Препринти"
+
+msgid "plugins.importexport.common.missingRequirements"
+msgstr "Вимоги до плагіна не виконано"
+
+msgid "plugins.importexport.common.error.DOIsNotAvailable"
+msgstr ""
+"Щоб використовувати цей плагін, будь ласка, перейдіть до плагіна \"Відкритий ідентифікатор\"
+" категорія, увімкніть і налаштуйте плагін DOI і вкажіть дійсний префікс DOI "
+" там."
+
+msgid "plugins.importexport.common.error.pluginNotConfigured"
+msgstr "Плагін налаштовано не повністю."
+
+msgid "plugins.importexport.common.settings.form.password"
+msgstr "Пароль"
+
+msgid "plugins.importexport.common.settings.form.password.description"
+msgstr "
+"Зауважте, що пароль буде збережено як простий текст, тобто не "
+" зашифровано."
+
+msgid "plugins.importexport.common.status.any"
+msgstr "Будь-який статус"
+
+msgid "plugins.importexport.common.status.notDeposited"
+msgstr "Не депоновано"
+
+msgid "plugins.importexport.common.status.markedRegistered"
+msgstr "Позначено як зареєстрований"
+
+msgid "plugins.importexport.common.status.registered"
+msgstr "Зареєстрований"
+
+msgid "plugins.importexport.common.action"
+msgstr "Дія"
+
+msgid "plugins.importexport.common.action.export"
+msgstr "Експорт"
+
+msgid "plugins.importexport.common.action.markRegistered"
+msgstr "Позначити зареєстрованим"
+
+msgid "plugins.importexport.common.action.register"
+msgstr "зареєструватися"
+
+msgid "plugins.importexport.common.validation"
+msgstr "Перевірте XML перед експортом і реєстрацією."
+
+msgid "plugins.importexport.common.error.noObjectsSelected"
+msgstr "Об'єкти не вибрано."
+
+msgid "plugins.importexport.common.error.validation"
+msgstr "Не вдалося перетворити вибрані об'єкти."
+
+msgid "plugins.importexport.common.invalidXML"
+msgstr "Недійсний XML:"
+
+msgid "plugins.importexport.common.export.error.outputFileNotWritable"
+msgstr "Вихідний файл {$param} не можна записувати."
+
+msgid "plugins.importexport.common.register.error.mdsError"
+msgstr ""
+"Реєстрація не пройшла успішно! Сервер реєстрації DOI повернув "
+" помилка: '{$param}'."
+
+msgid "plugins.importexport.common.register.success"
+msgstr "Реєстрація успішна!"
+
+msgid "plugins.importexport.common.senderTask.warning.noDOIprefix"
+msgstr "Для сервера із шляхом відсутній префікс DOI{$path}."
+
+msgid "plugins.importexport.common.cliError"
+msgstr "ПОМИЛКА:"
+
+msgid "plugins.importexport.common.error.unknownJournal"
+msgstr "Вказаний шлях до сервера, \"{$journalPath}\", не існує."
+
+msgid "plugins.importexport.common.error.unknownObjects"
+msgstr "Зазначені об'єкти не знайдено."
+
+msgid "stats.publicationStats"
+msgstr "Статистика препринтів"
+
+msgid "stats.publications.details"
+msgstr "Деталі препринтів"
+
+msgid "stats.publications.none"
+msgstr ""
+"Не знайдено препринтів із статистикою використання, що відповідає цим параметрам."
+
+msgid "stats.publications.totalAbstractViews.timelineInterval"
+msgstr "Загальна кількість переглядів рефератів за датою"
+
+msgid "stats.publications.totalGalleyViews.timelineInterval"
+msgstr "Загальна кількість переглядів файлів за датою"
+
+msgid "stats.publications.countOfTotal"
+msgstr "{$count} of {$total} preprints"
+
+msgid "stats.publications.abstracts"
+msgstr "Тези доповідей"

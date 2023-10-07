@@ -1,0 +1,96 @@
+# MarynaMaslova <mma021038@gmail.com>, 2023.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-11-13T08:00:00+02:00\n"
+"PO-Revision-Date: 2023-04-26T08:00:00+02:00\n"
+"Last-Translator:MarynaMaslova <mma021038@gmail.com> \n"
+"Language-Team: Ukrainian <http://translate.pkp.sfu.ca/projects/ojs/author/"
+"uk_UA/>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.13.1\n"
+
+msgid "author.submit"
+msgstr "Нове подання"
+
+msgid "author.competingInterests"
+msgstr ""
+"Конкуруючі інтереси" <a target=\"_new\" class=\"action\" href="
+"\"{$competingInterestGuidelinesUrl}\">CI Policy</a>"
+
+msgid "author.submit.startHereLink"
+msgstr ""
+"<a href=\"{$submitUrl}\" class=\"action\">Click here</a> щоб перейти до першого кроку"
+" п'ятиетапного процесу подання."
+
+msgid "author.submit.start"
+msgstr "Початок"
+
+msgid "author.submit.upload"
+msgstr "Завантажити подання"
+
+msgid "author.submit.metadata"
+msgstr "Введіть метадані"
+
+msgid "author.submit.confirmation"
+msgstr "Підтвердження"
+
+msgid "author.submit.nextSteps"
+msgstr "Наступні кроки"
+
+msgid "submission.submit.cancelSubmission"
+msgstr ""
+"Ви можете завершити це подання пізніше, вибравши Активні"
+" Подання з домашньої сторінки автора."
+
+msgid "author.submit.notAccepting"
+msgstr "Цей сервер наразі не приймає подання."
+
+msgid "author.submit.journalSection"
+msgstr "Серверний розділ."
+
+msgid "author.submit.journalSectionDescription"
+msgstr "Препринти необхідно відправити в один із розділів сервера."
+
+msgid "submission.submit.coverNote"
+msgstr "Коментарі для модератора."
+
+msgid "author.submit.form.sectionRequired"
+msgstr "Виберіть відповідний розділ сервера для цього подання."
+
+msgid "author.submit.languageInstructions"
+msgstr ""
+"Англійська=en; Французька = фр; Іспанська=es. <a href=\"http://www.loc.gov/standards/"
+"iso639-2/php/code_list.php\" target=\"_blank\">Additional codes</a>."
+
+msgid "author.submit.form.abstractRequired"
+msgstr "Будь ласка, введіть анотацію вашого препринту."
+
+msgid "author.submit.authorCanNotPublish"
+msgstr ""
+"Автори на цьому сервері не можуть публікуватися самі. Сервер було "
+" повідомлено про Ваше подання, і вам надіслано електронною поштою відповідне підтвердження. "
+" Коли модератор перегляне Ваше подання, він опублікує Ваш "
+" препринт або зв'яжеться з Вами."
+
+msgid "author.submit.publishRequirements"
+msgstr ""
+"Сервер було повідомлено про Ваше подання, і Вам надіслано електронний лист "
+" з відповідним підтвердженням. Після того, як модератор перегляне "
+" подання, він опублікує Ваш препринт або зв'яжеться з Вами. Ви також можете опублікувати "
+" самостійно у разі виконання наступних вимог:"
+
+msgid "author.submit.authorCanPublish"
+msgstr ""
+"Сервер було повідомлено про Ваше подання, і Вам надіслано електронний лист "
+" з відповідним підтвердженням. <b>Всі вимоги до публікації були "
+" виконані, і Ви можете перейти до перегляду та публікації Вашого препринту</b>."
+
+msgid "author.submit.proceedToPublish"
+msgstr "Перейти до публікації"
