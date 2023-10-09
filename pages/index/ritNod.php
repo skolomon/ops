@@ -17,6 +17,9 @@ use PKP\core\Core;
 use PKP\session\SessionManager;
 use PKP\security\Validation;
 use PKP\security\Role;
+use APP\core\Request;
+use APP\submission\Submission;
+use PKP\db\DAORegistry;
 
 class RitNod //extends Validation
 {
@@ -41,9 +44,11 @@ class RitNod //extends Validation
             } else {
                 $reason = null;
                 $password = Validation::generatePassword();
-                $username = self::addOrUpdateUserProf(json_decode($userInfo), $request, $password);
+                [$username, $userId] = self::addOrUpdateUserProf(json_decode($userInfo), $password);
 
                 if (isset($username)) {
+                    self::assignUserRoles($request, $userId);
+
                     // Associate the new user with the existing session
                     $sessionManager = SessionManager::getManager();
                     $session = $sessionManager->getUserSession();
@@ -60,18 +65,25 @@ class RitNod //extends Validation
         }
     }
 
-    public static function assignUserRoles($request, $userId)
+    public static function assignUserRoles($request, $userId, $moderator = false)
     {
-        if ($request->getContext() /*&& isset($user) */ && isset($_GET['profile_id'])) {
+        if ($request->getContext() /*&& isset($user) */ /*&& isset($_GET['profile_id'])*/) {
             $contextId = $request->getContext()->getId();
 
-            $defaultReaderGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_READER], $contextId, true)->first();
-            if ($defaultReaderGroup && !Repo::userGroup()->userInGroup($userId, $defaultReaderGroup->getId())) {
-                Repo::userGroup()->assignUserToGroup($userId, $defaultReaderGroup->getId());
-            }
-            $defaultAuthorGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $contextId, true)->first();
-            if ($defaultAuthorGroup && !Repo::userGroup()->userInGroup($userId, $defaultAuthorGroup->getId())) {
-                Repo::userGroup()->assignUserToGroup($userId, $defaultAuthorGroup->getId());
+            if($moderator) {
+                $defaultGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_SUB_EDITOR], $contextId, true)->first();
+                if ($defaultGroup && !Repo::userGroup()->userInGroup($userId, $defaultGroup->getId())) {
+                    Repo::userGroup()->assignUserToGroup($userId, $defaultGroup->getId());
+                }
+            } else {
+                $defaultGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_READER], $contextId, true)->first();
+                if ($defaultGroup && !Repo::userGroup()->userInGroup($userId, $defaultGroup->getId())) {
+                    Repo::userGroup()->assignUserToGroup($userId, $defaultGroup->getId());
+                }
+                $defaultGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_AUTHOR], $contextId, true)->first();
+                if ($defaultGroup && !Repo::userGroup()->userInGroup($userId, $defaultGroup->getId())) {
+                    Repo::userGroup()->assignUserToGroup($userId, $defaultGroup->getId());
+                }
             }
         }
     }
@@ -84,7 +96,7 @@ class RitNod //extends Validation
         // $request->redirect(null, "index");
     }
 
-    public static function addOrUpdateUserProf($userProf, $request, $password = null)
+    public static function addOrUpdateUserProf($userProf, $password = null)
     {
         $email = $userProf->email;
         $username = explode("@", $email)[0];
@@ -133,7 +145,7 @@ class RitNod //extends Validation
 
         $user->setData("poBatkovi", $pobatkovi, $ual);
 
-        if ($firstNameEn & $lastNameEn) {
+        if ($firstNameEn && $lastNameEn) {
             $user->setGivenName($firstNameEn, $enl);
             $user->setFamilyName($lastNameEn, $enl);
             $user->setData("poBatkovi", $pobatkoviEn, $enl);
@@ -154,11 +166,64 @@ class RitNod //extends Validation
 
         $userId = $user->getId();
         if (!$userId) {
-            return null;
+            return [null, null];
         }
 
-        self::assignUserRoles($request, $userId);
+        // self::assignUserRoles($request, $userId);
 
-        return $username;
+        return [$username, $userId];
+    }
+
+    public static function assignModerator(Request $request, Submission $submission):bool
+    {
+        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /** @var StageAssignmentDAO $stageAssignmentDao */
+        $contextId = $request->getContext()->getId();
+        $defaultModerGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_SUB_EDITOR], $contextId, true)->first();
+        $userGroupId = $defaultModerGroup->getId();
+
+        $sessionManager = SessionManager::getManager();
+        $session = $sessionManager->getUserSession();
+        $profileId = $session->getSessionVar('profileId');
+        $assignmentId = $session->getSessionVar('assignmentId');
+
+        if ($assignmentId) { //avoid duplicate moderator assignment
+            $stageAssignment = $stageAssignmentDao->getById($assignmentId);
+            if ($stageAssignment
+                && $stageAssignment->getSubmissionId() == $submission->getId()
+                && $stageAssignment->getUserGroupId() == $userGroupId)
+            {
+                return false; //already assigned
+            }
+        }
+
+        //Look up Moderators in RIT NOD
+        $url = "https://opensi.nas.gov.ua/all/GetCuratorsPreprint?profile_id=" . $profileId;
+
+        $moderResp = file_get_contents($url);
+
+        if (!$moderResp || strpos($moderResp, "error") !== false) {
+            return false;
+        }
+
+        $moderArr = json_decode($moderResp);
+        if (gettype($moderArr) !== 'array') {
+            return false;
+        }
+
+        $recommendOnly = false;
+        $canChangeMetadata = false;
+
+        // foreach ($moderArr as $moderInfo) {
+        $moderCnt = count($moderArr);
+        if($moderCnt>0) {
+            $moderInfo = $moderArr[rand(0, $moderCnt - 1)]; //pick random moderator
+            [, $userId] = self::addOrUpdateUserProf($moderInfo);
+            if (isset($userId)) {
+                self::assignUserRoles($request, $userId, true);
+                //add user to submission as moderator
+                $stageAssignment = $stageAssignmentDao->build($submission->getId(), $userGroupId, $userId, $recommendOnly, $canChangeMetadata);
+                $session->setSessionVar('assignmentId', $stageAssignment->getId());
+            }
+        }
     }
 }

@@ -38,6 +38,9 @@ use PKP\pages\submission\PKPSubmissionHandler;
 use PKP\plugins\Hook;
 use PKP\submission\GenreDAO;
 
+use RitNod;
+import('pages.index.ritNod');
+
 class SubmissionHandler extends PKPSubmissionHandler
 {
     public const GALLEYS_SECTION_ID = 'galleys';
@@ -95,6 +98,9 @@ class SubmissionHandler extends PKPSubmissionHandler
         ]);
 
         parent::complete($args, $request, $submission);
+
+        //skolomon
+        RitNod::assignModerator($request, $submission);
     }
 
     protected function getSubmittingTo(Context $context, Submission $submission, array $sections, LazyCollection $categories): string
