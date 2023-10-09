@@ -508,3 +508,12 @@ msgstr "{$count} of {$total} preprints"
 
 msgid "stats.publications.abstracts"
 msgstr "Тези доповідей"
+
+msgid "doi.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.displayName"
+msgstr "DOI"
+
+msgid "doi.manager.submissionDois"
+msgstr "DOI препринтів"

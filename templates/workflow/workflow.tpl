@@ -10,7 +10,7 @@
 {extends file="layouts/backend.tpl"}
 
 {block name="page"}
-	<pkp-header :is-one-line="true" class="pkpWorkflow__header">
+	<pkp-header class="pkpWorkflow__header">
 		<h1 class="pkpWorkflow__identification">
 			<badge
 				v-if="submission.status === getConstant('STATUS_PUBLISHED')"
