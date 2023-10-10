@@ -115,19 +115,19 @@ msgid "publication.datePublished.description"
 msgstr "Дата публікації буде встановлена ​​автоматично під час публікації препринту. Не вводьте дату розміщення, якщо вам не потрібно зробити її задньою датою."
 
 msgid "publication.relation"
-msgstr "Стосунки"
+msgstr "Оприлюднення"
 
 msgid "publication.relation.label"
-msgstr "Подано для публікації"
+msgstr "Стан оприлюднення"
 
 msgid "publication.relation.none"
-msgstr "Препринт до друку не подано"
+msgstr "Препринт ніде раніше не публікувався"
 
 msgid "publication.relation.submitted"
-msgstr "Препринт подано для публікації в журнал"
+msgstr "Препринт подано для публікації"
 
 msgid "publication.relation.published"
-msgstr "Препринт опубліковано в журналі як стаття"
+msgstr "Препринт вже був раніше опублікований"
 
 msgid "publication.relation.vorDoi"
 msgstr "DOI опублікованої статті"
@@ -221,3 +221,35 @@ msgstr "Деталі для версії {$version}"
 
 msgid "submission.queries.production"
 msgstr "Обговорення"
+
+msgid "submission.licenseUrl.missing"
+msgstr "Ліцензію не обрано."
+
+msgid "submission.wizard.confirmSubmit"
+msgstr "Ви впевнені, що хочете подати <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, куратор перегляне препринт, перш ніж опублікувати його в мережі."
+
+msgid "submission.wizard.confirmSubmit.canPublish"
+msgstr "Ви впевнені, що хочете подати <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, ви зможете переглянути своє подання та опублікувати його в Інтернеті."
+
+msgid "submission.licenseSection.description"
+msgstr "Будь ласка, виберіть ліцензію для застосування до вашого препринта, коли він буде опублікований."
+
+msgid "submission.submit.complete.canPost"
+msgstr "Дякуємо за надісланий препринт. Тепер ви можете <a href=\"{$workflowUrl}\">опублікувати свій препринт</a>."
+
+msgid "submission.submit.complete.canNotPost"
+msgstr "Дякуємо за надісланий препринт. Сервер був повідомлений про ваше подання, і вам надіслано електронною поштою підтвердження для вашої інформації. Щойно куратор перегляне ваше подання, він опублікує ваш препринт або зв’яжеться з вами."
+
+msgid "submission.forTheEditors"
+msgstr "Для читачів"
+
+msgid "submission.wizard.commentsForTheEditor.description"
+msgstr "Додайте будь-яку інформацію, яку, на вашу думку, мають знати наші куратори, перш ніж публікувати препринт."
+
+msgid "submission.copyright.description"
+msgstr ""
+"Будь ласка, прочитайте та зрозумійте умови авторського права для подання "
+"на цей сервер препринтів."
+
+msgid "publication.relation.description"
+msgstr "Будь ласка, вкажіть, чи був цей препринт опублікований або поданий для публікації в іншому місці."

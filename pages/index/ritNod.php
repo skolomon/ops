@@ -20,6 +20,17 @@ use PKP\security\Role;
 use APP\core\Request;
 use APP\submission\Submission;
 use PKP\db\DAORegistry;
+use PKP\core\PKPApplication;
+use APP\core\Application;
+use APP\notification\NotificationManager;
+use APP\notification\Notification;
+use PKP\notification\PKPNotification;
+use PKP\log\event\PKPSubmissionEventLogEntry;
+use PKP\mail\mailables\EditorAssigned;
+use PKP\log\SubmissionEmailLogEntry;
+use PKP\log\SubmissionEmailLogDAO;
+
+use Illuminate\Support\Facades\Mail;
 
 class RitNod //extends Validation
 {
@@ -213,6 +224,9 @@ class RitNod //extends Validation
         $recommendOnly = false;
         $canChangeMetadata = false;
 
+        $notificationManager = new NotificationManager();
+        $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+
         // foreach ($moderArr as $moderInfo) {
         $moderCnt = count($moderArr);
         if($moderCnt>0) {
@@ -223,6 +237,66 @@ class RitNod //extends Validation
                 //add user to submission as moderator
                 $stageAssignment = $stageAssignmentDao->build($submission->getId(), $userGroupId, $userId, $recommendOnly, $canChangeMetadata);
                 $session->setSessionVar('assignmentId', $stageAssignment->getId());
+
+                //nofify
+                $user = Repo::user()->get($userId);
+                // $notificationManager->createTrivialNotification($userId, PKPNotification::NOTIFICATION_TYPE_SUCCESS, ['contents' => __('notification.addedStageParticipant')]);
+
+                // Send notification
+                $notification = $notificationManager->createNotification(
+                    $request,
+                    $userId,
+                    Notification::NOTIFICATION_TYPE_EDITOR_ASSIGN,
+                    $contextId,
+                    Application::ASSOC_TYPE_SUBMISSION,
+                    $submission->getId(),
+                    Notification::NOTIFICATION_LEVEL_TASK
+                );
+
+                // Send email
+                $emailTemplate = Repo::emailTemplate()->getByKey($contextId, EditorAssigned::getEmailTemplateKey());
+                $mailable = new EditorAssigned($request->getContext(), $submission);
+
+                // The template may not exist, see pkp/pkp-lib#9217; FIXME remove after #9202 is resolved
+                if (!$emailTemplate) {
+                    $emailTemplate = Repo::emailTemplate()->getByKey($contextId, 'NOTIFICATION');
+                    $request = Application::get()->getRequest();
+                    $mailable->addData([
+                        'notificationContents' => $notificationManager->getNotificationContents($request, $notification),
+                        'notificationUrl' => $notificationManager->getNotificationUrl($request, $notification),
+                    ]);
+                }
+
+                $mailable
+                ->from($request->getContext()->getData('contactEmail'), $request->getContext()->getData('contactName'))
+                ->subject($emailTemplate->getLocalizedData('subject'))
+                ->body($emailTemplate->getLocalizedData('body'))
+                ->recipients([$user]);
+
+                Mail::send($mailable);
+
+                // Log email
+                $logDao->logMailable(
+                    SubmissionEmailLogEntry::SUBMISSION_EMAIL_EDITOR_ASSIGN,
+                    $mailable,
+                    $submission
+                );
+
+                // Log addition.
+                $assignedUser = Repo::user()->get($userId, true);
+                $eventLog = Repo::eventLog()->newDataObject([
+                    'assocType' => PKPApplication::ASSOC_TYPE_SUBMISSION,
+                    'assocId' => $submission->getId(),
+                    'eventType' => PKPSubmissionEventLogEntry::SUBMISSION_LOG_ADD_PARTICIPANT,
+                    'userId' => Validation::loggedInAs() ?? $user->getId(),
+                    'message' => 'submission.event.participantAdded',
+                    'isTranslated' => false,
+                    'dateLogged' => Core::getCurrentDate(),
+                    'userFullName' => $assignedUser->getFullName(),
+                    'username' => $assignedUser->getUsername(),
+                    'userGroupName' => $defaultModerGroup->getData('name')
+                ]);
+                Repo::eventLog()->add($eventLog);
             }
         }
     }

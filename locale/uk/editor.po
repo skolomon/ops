@@ -38,7 +38,7 @@ msgstr ""
 " об'єкт одного типу. Виберіть унікальні ідентифікатори для об'єктів "
 " одного типу на вашому сервері."
 
-msgid "editor.article.coverImage"
+msgid "editor.preprint.coverImage"
 msgstr "Обкладинка"
 
 msgid "editor.publication.authorPublishRequirements"
@@ -49,3 +49,6 @@ msgstr "Призначений модератору"
 
 msgid "editor.submission.postPreprint"
 msgstr "Опублікувати препринт"
+
+msgid "editor.submission.schedulePublication"
+msgstr "Запланувати публікацію"
