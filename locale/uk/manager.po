@@ -517,3 +517,43 @@ msgstr "DOI"
 
 msgid "doi.manager.submissionDois"
 msgstr "DOI препринтів"
+
+msgid "manager.setup.enableDois.description"
+msgstr ""
+"Дозволити призначати цифрові ідентифікатори об’єктів (DOI) роботам, "
+"опублікованим на цьому сервері."
+
+msgid "doi.manager.settings.doiObjectsRequired"
+msgstr ""
+"Виберіть типи робіт, опублікованих на цьому сервері, яким слід призначити DOI. "
+"Більшість серверів препринтів призначають DOI препринтам, але ви можете "
+"забажати призначити DOI також гранкам препринтів."
+
+msgid "doi.manager.settings.galleysWithDescription"
+msgstr "Гранки препринтів, наприклад такі як опублікований PDF-файл"
+
+msgid "doi.manager.settings.doiCreationTime.copyedit"
+msgstr "При досягненні етапу верстки"
+
+msgid "doi.manager.settings.doiVersioning.description"
+msgstr ""
+"Призначати кожній версії публікації новий DOI? "
+"Більшість серверів препринтів використовують параметр за замовчуванням (так), "
+"щоб бути впевненими, що версіям препринтів правильно призначаються DOI."
+
+msgid "doi.manager.settings.doiVersioning.yes"
+msgstr "Так, призначати окремий DOI кожній версії препринта."
+
+msgid "doi.manager.settings.doiVersioning.no"
+msgstr "Ні, усі версії препринта повинні мати однаковий DOI."
+
+msgid "manager.setup.restrictPreprintAccess"
+msgstr "Користувачі повинні бути зареєстровані та авторизуватися, щоб переглядати вміст відкритого доступу."
+
+msgid "manager.setup.selectCountry"
+msgstr ""
+"Виберіть країну, де знаходиться цей сервер, "
+"або країну поштової адреси сервера чи видавця."
+
+msgid "manager.setup.serverAbbreviation"
+msgstr "Абревіатура сервера"
