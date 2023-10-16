@@ -43,9 +43,18 @@ class RitNod //extends Validation
             if (Validation::isLoggedIn()) {
                 Validation::logout();
             }
-            $url = "https://opensi.nas.gov.ua/all/GetProfileByKey?profile_id=" . $profileId;
+            $url = "https://opensi.nas.gov.ua/all/GetProfileByKey";
 
-            $userInfo = file_get_contents($url);
+            $body = http_build_query(['token' => $profileId]);
+            $opts = [
+                'http' => [
+                    // 'method'=>"GET",
+                    'content' => $body
+                ]
+            ];
+            $context = stream_context_create($opts);
+
+            $userInfo = file_get_contents($url, false, $context);
 
             if (!$userInfo) { //TODO: refacror Error messages
                 echo "<p style='color:red;font-size:1.2rem;'>Error obtaining user profile / Помилка при отриманні даних користувача з РІТ НОД</p>";
@@ -208,9 +217,18 @@ class RitNod //extends Validation
         }
 
         //Look up Moderators in RIT NOD
-        $url = "https://opensi.nas.gov.ua/all/GetCuratorsPreprint?profile_id=" . $profileId;
+        $url = "https://opensi.nas.gov.ua/all/GetCuratorsPreprint";
 
-        $moderResp = file_get_contents($url);
+        $body = http_build_query(['token' => $profileId]);
+        $opts = [
+            'http' => [
+                // 'method'=>"GET",
+                'content' => $body
+            ]
+        ];
+        $context = stream_context_create($opts);
+
+        $moderResp = file_get_contents($url, false, $context);
 
         if (!$moderResp || strpos($moderResp, "error") !== false) {
             return false;
