@@ -253,3 +253,18 @@ msgstr ""
 
 msgid "publication.relation.description"
 msgstr "Будь ласка, вкажіть, чи був цей препринт опублікований або поданий для публікації в іншому місці."
+
+msgid "publication.publish.relationStatus"
+msgstr "Статус оприлюднення"
+
+msgid "publication.publish.relationStatus.none"
+msgstr "Препринт ніде раніше не публікувався."
+
+msgid "publication.publish.relationStatus.submitted"
+msgstr "Цей препринт подано до журналу чи іншого наукового видання."
+
+msgid "publication.publish.relationStatus.published.noDoi"
+msgstr "Цей препринт вже був опублікований, але DOI ще немає."
+
+msgid "publication.publish.relationStatus.published"
+msgstr "Цей препринт вже був <a href='{$vorDoi}' target='_blank'>опублікований</a>."

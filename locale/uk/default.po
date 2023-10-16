@@ -109,10 +109,10 @@ msgid "default.groups.abbrev.manager"
 msgstr "PSM"
 
 msgid "default.groups.name.sectionEditor"
-msgstr "модератор"
+msgstr "Модератор"
 
 msgid "default.groups.plural.sectionEditor"
-msgstr "модератори"
+msgstr "Модератори"
 
 msgid "default.groups.abbrev.sectionEditor"
 msgstr "MOD"
