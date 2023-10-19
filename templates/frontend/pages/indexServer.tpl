@@ -25,6 +25,27 @@
 		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
 	{/if}
 
+	{* skolomon: add welcome message and links *}
+	{if $isUserLoggedIn}
+		<h1 class="cmp_welcome">
+			{translate key="user.welcome"}
+			{$salutation}
+		</h1>
+		<h2>
+			{translate key="about.submissions"}
+		</h2>
+
+		<div class="cmp_notification">
+			{if $sections|@count == 0 || $currentContext->getData('disableSubmissions')}
+				{translate key="author.submit.notAccepting"}
+			{else}
+				{capture assign="newSubmission"}<a href="{url page="submission"}">{translate key="about.onlineSubmissions.newSubmission"}</a>{/capture}
+				{capture assign="viewSubmissions"}<a href="{url page="submissions"}">{translate key="about.onlineSubmissions.viewSubmissions"}</a>{/capture}
+				{translate key="about.onlineSubmissions.submissionActions" newSubmission=$newSubmission viewSubmissions=$viewSubmissions}
+			{/if}
+		</div>
+	{/if}
+
 	{* Search and category listing *}
 	{include file="frontend/components/archiveHeader.tpl"}
 

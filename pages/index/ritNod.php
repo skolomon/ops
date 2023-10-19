@@ -14,7 +14,7 @@
 
 use APP\facades\Repo;
 use PKP\core\Core;
-use PKP\session\SessionManager;
+// use PKP\session\SessionManager;
 use PKP\security\Validation;
 use PKP\security\Role;
 use APP\core\Request;
@@ -24,7 +24,7 @@ use PKP\core\PKPApplication;
 use APP\core\Application;
 use APP\notification\NotificationManager;
 use APP\notification\Notification;
-use PKP\notification\PKPNotification;
+// use PKP\notification\PKPNotification;
 use PKP\log\event\PKPSubmissionEventLogEntry;
 use PKP\mail\mailables\EditorAssigned;
 use PKP\log\SubmissionEmailLogEntry;
@@ -38,6 +38,10 @@ class RitNod //extends Validation
     {
         $profileId = $_GET['profile_id'];
         $lang = $_GET['lang'];
+
+        $session = $request->getSession();
+        $source = $session->getSessionVar('source');
+        $session->setSessionVar('source', null);
 
         if (isset($profileId)) {
             if (Validation::isLoggedIn()) {
@@ -70,8 +74,8 @@ class RitNod //extends Validation
                     self::assignUserRoles($request, $userId);
 
                     // Associate the new user with the existing session
-                    $sessionManager = SessionManager::getManager();
-                    $session = $sessionManager->getUserSession();
+                    // $sessionManager = SessionManager::getManager();
+                    // $session = $sessionManager->getUserSession();
                     $session->setSessionVar('username', $username);
                     $session->setSessionVar('profileId', $profileId);
 
@@ -79,7 +83,12 @@ class RitNod //extends Validation
                     if (isset($lang)) {
                         self::setUserLocale($request, $lang);
                     }
-                    $request->redirect(null, "index");
+
+                    if ($source) {
+                        $request->redirectUrl($source);
+                    } else {
+                        $request->redirect(null, "index");
+                    }
                 }
             }
         }
@@ -201,8 +210,9 @@ class RitNod //extends Validation
         $defaultModerGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_SUB_EDITOR], $contextId, true)->first();
         $userGroupId = $defaultModerGroup->getId();
 
-        $sessionManager = SessionManager::getManager();
-        $session = $sessionManager->getUserSession();
+        // $sessionManager = SessionManager::getManager();
+        // $session = $sessionManager->getUserSession();
+        $session = $request->getSession();
         $profileId = $session->getSessionVar('profileId');
         $assignmentId = $session->getSessionVar('assignmentId');
 

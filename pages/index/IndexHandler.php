@@ -97,6 +97,7 @@ class IndexHandler extends PKPIndexHandler
                 'pubIdPlugins' => PluginRegistry::loadCategory('pubIds', true),
                 'publishedSubmissions' => $publishedSubmissions->toArray(),
                 'authorUserGroups' => Repo::userGroup()->getCollector()->filterByRoleIds([\PKP\security\Role::ROLE_ID_AUTHOR])->filterByContextIds([$server->getId()])->getMany()->remember(),
+                "salutation" => $request->getUser()->getFullName(), //skolomon
             ]);
 
             $this->_setupAnnouncements($server, $templateMgr);
