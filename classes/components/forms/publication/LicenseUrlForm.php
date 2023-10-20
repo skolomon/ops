@@ -46,11 +46,11 @@ class LicenseUrlForm extends FormComponent
                 'label' => __($label),
             ];
         }
-        $this->licenseOptions[] = [
-            'value' => 'other',
-            'label' => __('manager.distribution.license.other'),
-            'isInput' => true,
-        ];
+        // $this->licenseOptions[] = [
+        //     'value' => 'other',
+        //     'label' => __('manager.distribution.license.other'),
+        //     'isInput' => true,
+        // ];
 
         $this->addField(new FieldRadioInput('licenseUrl', [
             'label' => __('manager.distribution.license'),

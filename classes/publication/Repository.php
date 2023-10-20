@@ -125,9 +125,10 @@ class Repository extends \PKP\publication\Repository
     {
         $errors = parent::validatePublish($publication, $submission, $allowedLocales, $primaryLocale);
 
-        if (!$this->canCurrentUserPublish($submission->getId())) {
-            $errors['authorCheck'] = __('author.submit.authorsCanNotPublish');
-        }
+        //skolomon: authors that ARE also moderators are allowed to publish
+        // if (!$this->canCurrentUserPublish($submission->getId())) {
+        //     $errors['authorCheck'] = __('author.submit.authorsCanNotPublish');
+        // }
 
         return $errors;
     }
