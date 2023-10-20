@@ -28,8 +28,7 @@
 	{* skolomon: add welcome message and links *}
 	{if $isUserLoggedIn}
 		<h1 class="cmp_welcome">
-			{translate key="user.welcome"}
-			{$salutation}
+			{translate key="user.welcome" name=$salutation}
 		</h1>
 		<h2>
 			{translate key="about.submissions"}
