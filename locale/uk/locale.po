@@ -236,10 +236,11 @@ msgid "about.onlineSubmissions.register"
 msgstr "зареєструватися"
 
 msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} or {$register} зробити подання."
+msgstr "{$login} або {$register}, щоб зробити подання."
 
 msgid "about.onlineSubmissions.submissionActions"
-msgstr "{$newSubmission} or {$viewSubmissions}."
+msgstr "<ul style="margin-block:0"><li>{$newSubmission}, або</li>"
+"<li>{$viewSubmissions}.</li>"
 
 msgid "about.onlineSubmissions.submitToSection"
 msgstr "Зробіть нове подання до розділу <a href=\"{$url}\">{$name}</a>."
@@ -248,7 +249,7 @@ msgid "about.onlineSubmissions.newSubmission"
 msgstr "Зробіть нове подання"
 
 msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "переглянути ваші подання, що очікують на розгляд"
+msgstr "Переглянути ваші подання, що очікують на розгляд"
 
 msgid "about.authorGuidelines"
 msgstr "Авторські вказівки"

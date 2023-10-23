@@ -231,7 +231,8 @@ msgid "about.onlineSubmissions.registrationRequired"
 msgstr "{$login} or {$register} to make a submission."
 
 msgid "about.onlineSubmissions.submissionActions"
-msgstr "{$newSubmission} or {$viewSubmissions}."
+msgstr "<ul style="margin-block:0"><li>{$newSubmission} or</li>"
+"<li>{$viewSubmissions}.</li>"
 
 msgid "about.onlineSubmissions.submitToSection"
 msgstr "Make a new submission to the <a href=\"{$url}\">{$name}</a> section."
@@ -240,7 +241,7 @@ msgid "about.onlineSubmissions.newSubmission"
 msgstr "Make a new submission"
 
 msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "view your pending submissions"
+msgstr "View your pending submissions"
 
 msgid "about.authorGuidelines"
 msgstr "Author Guidelines"
