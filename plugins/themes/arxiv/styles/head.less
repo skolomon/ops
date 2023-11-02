@@ -10,7 +10,7 @@
  *
  * @brief Classes for the page header structural elements
  */
-@nav-menu-height: @quadruple;
+@nav-menu-height: 48px; //@quadruple;
 
 // Structural components of the header layout
 .pkp_structure_head {
@@ -27,6 +27,7 @@
 
 	@media (min-width: @screen-tablet) { //@screen-desktop
 		height: auto;
+		margin-block: -1.25rem -0.15rem;
 	}
 }
 
@@ -45,6 +46,7 @@
 	color: @text-bg-base;
 	font-family: @font-site-title;
 	font-size: @font-sml;
+	height: 100%;
 
 	> a {
 		padding-top: @base;
@@ -56,10 +58,12 @@
 	}
 
 	.is_img {
-		display: inline-block;
-		margin-top: @half;
-		margin-bottom: @half;
+		display: flex;
+		// margin-top: @half;
+		// margin-bottom: @half;
 		padding: 0;
+		height: 100%;
+		align-items: center;
 
 		&:focus {
 			outline: 1px solid @text-bg-base;
@@ -67,7 +71,7 @@
 
 		img {
 			display: block;
-			max-height: @nav-menu-height - @base;
+			max-height:  34px; //@nav-menu-height - @base;
 			max-width: 100%;
 			width: auto;
 			height: auto;

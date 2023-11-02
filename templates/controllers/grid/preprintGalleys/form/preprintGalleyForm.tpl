@@ -24,6 +24,10 @@
 </script>
 <form class="pkp_form" id="preprintGalleyForm" method="post" action="{url op="updateGalley" submissionId=$submissionId publicationId=$publicationId representationId=$representationId}">
 	{csrf}
+
+	{* Help link skolomon*}
+    {help file="submission-wizard" section="files" class="pkp_help_modal"}
+
 	{fbvFormArea id="galley"}
 		{fbvFormSection title="submission.layout.galleyLabel" required=true}
 			{fbvElement type="text" label="submission.layout.galleyLabelInstructions" value=$label id="label" size=$fbvStyles.size.MEDIUM inline=true required=true disabled=$formDisabled}

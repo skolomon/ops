@@ -249,7 +249,7 @@ msgid "about.onlineSubmissions.newSubmission"
 msgstr "Зробіть нове подання"
 
 msgid "about.onlineSubmissions.viewSubmissions"
-msgstr "Переглянути ваші подання, що очікують на розгляд"
+msgstr "Перегляньте список всіх Ваших подань"
 
 msgid "about.authorGuidelines"
 msgstr "Авторські вказівки"
