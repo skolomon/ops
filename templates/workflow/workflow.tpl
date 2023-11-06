@@ -135,6 +135,7 @@
 									v-if="workingPublication.status === getConstant('STATUS_QUEUED')"
 									ref="publish"
 									@click="openPublish"
+									class="pkpButton--yesButton" {* skolomon *}
 								>
 									{translate key="publication.publish"}
 								</pkp-button>
