@@ -35,7 +35,7 @@ msgid "common.queue.long.submissionsUnassigned"
 msgstr "Непризначені"
 
 msgid "common.queue.long.active"
-msgstr "Активний"
+msgstr "Активні"
 
 msgid "section.section"
 msgstr "Розділ"
