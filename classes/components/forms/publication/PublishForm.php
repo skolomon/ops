@@ -58,6 +58,7 @@ class PublishForm extends FormComponent
                 'id' => 'default',
                 'submitButton' => [
                     'label' => $submitLabel,
+                    'class' => 'pkpButton--yesButton'
                 ],
             ]);
         } else {

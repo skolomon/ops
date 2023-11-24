@@ -37,7 +37,7 @@ class RitNod //extends Validation
     public static function loginFromRitNod($request)
     {
         $profileId = $_GET['profile_id'];
-        $lang = $_GET['lang'];
+        $lang = $_GET['lang'] ?? null;
 
         $session = $request->getSession();
         $source = $session->getSessionVar('source');
@@ -52,7 +52,9 @@ class RitNod //extends Validation
             $body = http_build_query(['token' => $profileId]);
             $opts = [
                 'http' => [
-                    // 'method'=>"GET",
+                    'method'=>"GET",
+                    'header' =>
+                        "Content-Type: application/x-www-form-urlencoded",
                     'content' => $body
                 ]
             ];
