@@ -26,7 +26,7 @@
 	{csrf}
 
 	{* Help link skolomon*}
-    {help file="submission-wizard" section="files" class="pkp_help_modal"}
+    {help file="submission-wizard" section="add-file" class="pkp_help_modal"}
 
 	{fbvFormArea id="galley"}
 		{fbvFormSection title="submission.layout.galleyLabel" required=true}

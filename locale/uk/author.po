@@ -59,7 +59,7 @@ msgid "author.submit.journalSectionDescription"
 msgstr "Препринти необхідно відправити в один із розділів сервера."
 
 msgid "submission.submit.coverNote"
-msgstr "Коментарі для модератора."
+msgstr "Коментарі для куратора."
 
 msgid "author.submit.form.sectionRequired"
 msgstr "Виберіть відповідний розділ сервера для цього подання."
