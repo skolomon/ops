@@ -14,17 +14,41 @@
 
 .pkp_structure_footer {
 	text-align: center;
+	display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 2rem;
 }
 
 .pkp_footer_content {
-	padding: @triple;
+	// padding: @triple;
 	text-align: left;
+	margin-right: auto;
+	font-size: 1.4rem;
+	line-height: 2rem;
+	transform: scale(.7, 1.1);
+    transform-origin: top left;
+    letter-spacing: 1.5px;
+	strong {
+		font-family: serif;
+		font-size: larger;
+	}
+	p {
+		margin-block: 0.5rem;
+	}
+	a {
+		display: block;
+		margin-block: 0.5rem;
+		text-decoration: none;
+		color: inherit;
+	}
 }
 
 // OPS brand images in footer
 .pkp_brand_footer {
 	.pkp_helpers_clear();
-	padding: @triple;
+	// padding: @triple;
+	margin-left: auto;
+	margin-block: 1rem 0.5rem;
 
 	a {
 		float: right;
