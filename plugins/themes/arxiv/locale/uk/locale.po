@@ -80,6 +80,18 @@ msgid "plugins.themes.arxiv.option.useHomepageImageAsHeader.option"
 msgstr ""
 "Показувати зображення домашньої сторінки в якості тла верхнього колонтитула."
 
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.label"
+msgstr "Логотип в нижньому колонтитулі"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.none"
+msgstr "не показувати"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.logo"
+msgstr "показувати"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.mono"
+msgstr "показувати чорно-біле"
+
 msgid "plugins.themes.arxiv.option.displayStats.label"
 msgstr "Параметри відображення статистики використання"
 

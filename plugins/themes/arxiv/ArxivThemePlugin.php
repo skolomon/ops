@@ -106,6 +106,25 @@ class ArxivThemePlugin extends ThemePlugin
             ],
             'default' => false,
         ]);
+        $this->addOption('displayPageFooterLogo', 'FieldOptions', [
+            'type' => 'radio',
+            'label' => __('plugins.themes.arxiv.option.displayPageFooterLogo.label'),
+            'options' => [
+                [
+                    'value' => 'none',
+                    'label' => __('plugins.themes.arxiv.option.displayPageFooterLogo.none')
+                ],
+                [
+                    'value' => 'logo',
+                    'label' => __('plugins.themes.arxiv.option.displayPageFooterLogo.logo')
+                ],
+                [
+                    'value' => 'mono',
+                    'label' => __('plugins.themes.arxiv.option.displayPageFooterLogo.mono')
+                ],
+            ],
+            'default' => 'mono',
+        ]);
         $this->addOption('displayStats', 'FieldOptions', [
             'type' => 'radio',
             'label' => __('plugins.themes.arxiv.option.displayStats.label'),

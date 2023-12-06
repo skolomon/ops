@@ -72,6 +72,18 @@ msgstr ""
 msgid "plugins.themes.arxiv.option.useHomepageImageAsHeader.option"
 msgstr "Show the homepage image as the header background."
 
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.label"
+msgstr "Logo in Footer"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.none"
+msgstr "don't show"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.logo"
+msgstr "show logo"
+
+msgid "plugins.themes.arxiv.option.displayPageFooterLogo.mono"
+msgstr "show monochrome logo"
+
 msgid "plugins.themes.arxiv.option.displayStats.label"
 msgstr "Usage statistics display options"
 

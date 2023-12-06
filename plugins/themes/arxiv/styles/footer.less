@@ -23,8 +23,8 @@
 	// padding: @triple;
 	text-align: left;
 	margin-right: auto;
-	font-size: 1.4rem;
-	line-height: 2rem;
+	font-size: 1.3rem;
+	line-height: 1.6rem;
 	transform: scale(.7, 1.1);
     transform-origin: top left;
     letter-spacing: 1.5px;
@@ -40,6 +40,19 @@
 		margin-block: 0.5rem;
 		text-decoration: none;
 		color: inherit;
+	}
+	.footer-logo {
+		margin-right: -40%;
+		margin-bottom: -0.6rem;
+		img {
+			height: 3rem;
+		}
+	}
+	.mono-logo img {
+		filter: grayscale(100%) contrast(0) brightness(0.75);
+		&:hover {
+			filter: grayscale(100%) contrast(0) brightness(0.5);
+		}
 	}
 }
 
