@@ -63,9 +63,9 @@ class RitNod //extends Validation
             $userInfo = file_get_contents($url, false, $context);
 
             if (!$userInfo) { //TODO: refacror Error messages
-                echo "<p style='color:red;font-size:1.2rem;'>Error obtaining user profile / Помилка при отриманні даних користувача з РІТ НОД</p>";
+                echo "<p style='color:#d00a0a;font-size:1.2rem;'>Error obtaining user profile / Помилка при отриманні даних користувача з РІТ НОД</p>";
             } else if (strpos($userInfo, "error") !== false) {
-                echo "<p style='color:red;font-size:1.2rem;'>Error / Помилка: " . $userInfo . "</p>";
+                echo "<p style='color:#d00a0a;font-size:1.2rem;'>Error / Помилка: " . $userInfo . "</p>";
                 $userInfo = null;
             } else {
                 $reason = null;
