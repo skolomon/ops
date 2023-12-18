@@ -163,6 +163,9 @@ class RitNod //extends Validation
         $affiliation = $userProf->full_name_inst;
         $affiliationEn = $userProf->full_name_inst_en;
         $orcid = $userProf->ORCID;
+        if($orcid && !str_contains(strtolower($orcid), 'orcid.org')) {
+            $orcid = 'https://orcid.org/' . $orcid;
+        }
 
         if (!isset($password)) {
             $password  = Validation::generatePassword();
