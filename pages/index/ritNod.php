@@ -28,7 +28,6 @@ use APP\notification\Notification;
 use PKP\log\event\PKPSubmissionEventLogEntry;
 use PKP\mail\mailables\EditorAssigned;
 use PKP\log\SubmissionEmailLogEntry;
-use PKP\log\SubmissionEmailLogDAO;
 
 use Illuminate\Support\Facades\Mail;
 
@@ -62,38 +61,62 @@ class RitNod //extends Validation
 
             $userInfo = file_get_contents($url, false, $context);
 
-            if (!$userInfo) { //TODO: refacror Error messages
-                echo "<p style='color:#d00a0a;font-size:1.2rem;'>Error obtaining user profile / Помилка при отриманні даних користувача з РІТ НОД</p>";
-            } else if (strpos($userInfo, "error") !== false) {
-                echo "<p style='color:#d00a0a;font-size:1.2rem;'>Error / Помилка: " . $userInfo . "</p>";
-                $userInfo = null;
-            } else {
-                $reason = null;
-                $password = Validation::generatePassword();
-                [$username, $userId] = self::addOrUpdateUserProf(json_decode($userInfo), $password);
+            if (!$userInfo) {
+                self::displayErrorModal($request, __('login.error.title'), __('login.error.description', ['error' => __('login.error.noresponce')]));
+                return;
+            }
+            $userProf = json_decode($userInfo);
+            if (isset($userProf->Key) && $userProf->Key === "error") {
+                self::displayErrorModal($request, __('login.error.title'), __('login.error.description', ['error' => $userProf->Value ?? $userInfo]));
+                return;
+            }
+            if (!self::checkUserProfile($request, $userProf)) {
+                return;
+            }
 
-                if (isset($username)) {
-                    self::assignUserRoles($request, $userId);
+            $reason = null;
+            $password = Validation::generatePassword();
+            [$username, $userId] = self::addOrUpdateUserProf($userProf, $password);
 
-                    // Associate the new user with the existing session
-                    // $sessionManager = SessionManager::getManager();
-                    // $session = $sessionManager->getUserSession();
-                    $session->setSessionVar('username', $username);
-                    $session->setSessionVar('profileId', $profileId);
+            if (isset($username)) {
+                self::assignUserRoles($request, $userId);
 
-                    Validation::login($username, $password, $reason, true);
-                    if (isset($lang)) {
-                        self::setUserLocale($request, $lang);
-                    }
+                // Associate the new user with the existing session
+                // $sessionManager = SessionManager::getManager();
+                // $session = $sessionManager->getUserSession();
+                $session->setSessionVar('username', $username);
+                $session->setSessionVar('profileId', $profileId);
 
-                    if ($source) {
-                        $request->redirectUrl($source);
-                    } else {
-                        $request->redirect(null, "index");
-                    }
+                Validation::login($username, $password, $reason, true);
+                if (isset($lang)) {
+                    self::setUserLocale($request, $lang);
+                }
+
+                if ($source) {
+                    $request->redirectUrl($source);
+                } else {
+                    $request->redirect(null, "index");
                 }
             }
         }
+    }
+
+    public static function checkUserProfile($request, $userProf)
+    {
+        $errors = '';
+        $checkPoints = ['imya_ua', 'prizvische_ua', 'imya_en', 'prizvische_en', 'agreement_publ']; //'ORCID'?
+        foreach ($checkPoints as $point) {
+            if (!isset($userProf->$point) || !$userProf->$point) {
+                $errors .= '<li>' . __('profile.error.' . $point) . '</li>';
+            }
+        }
+
+        if ($errors) {
+            $message = __('profile.error.description', ['errors' => '<ul>' . $errors . '</ul>']);
+            self::displayErrorModal($request, __('profile.error.title'),  $message);
+            return false;
+        }
+        return true;
     }
 
     public static function assignUserRoles($request, $userId, $moderator = false)
@@ -330,4 +353,15 @@ class RitNod //extends Validation
             }
         }
     }
+
+    public static function displayErrorModal($request, $title, $message)
+    {
+        $templateMgr = TemplateManager::getManager($request);
+
+        $templateMgr->assign([
+            'title' => $title,
+            'message' => $message
+        ]);
+        $templateMgr->display('/ritNod/errorModal.tpl');
+    }    
 }
