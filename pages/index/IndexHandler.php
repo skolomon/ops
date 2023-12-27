@@ -45,8 +45,18 @@ class IndexHandler extends PKPIndexHandler
      */
     public function index($args, $request)
     {
+        //skolomon: login from RitNod, check Accession Agreement
+        $request->setCookieVar("dogovir", null);
+        $userAgreedKey = RitNod::getDogovirKey($request);
+        if ($userAgreedKey && isset($_GET[$userAgreedKey])) {
+            //User agreed, set flag and redirect.
+            RitNod::verifyUser($request);
+            return;
+        }
         if (isset($_GET['profile_id'])) {
-            RitNod::loginFromRitNod($request);
+            if (!RitNod::loginFromRitNod($request)) {
+                return; //Agreement already shown
+            }
         }
 
         $this->validate(null, $request);

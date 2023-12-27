@@ -28,7 +28,7 @@ use APP\notification\Notification;
 use PKP\log\event\PKPSubmissionEventLogEntry;
 use PKP\mail\mailables\EditorAssigned;
 use PKP\log\SubmissionEmailLogEntry;
-
+use APP\template\TemplateManager;
 use Illuminate\Support\Facades\Mail;
 
 class RitNod //extends Validation
@@ -63,20 +63,20 @@ class RitNod //extends Validation
 
             if (!$userInfo) {
                 self::displayErrorModal($request, __('login.error.title'), __('login.error.description', ['error' => __('login.error.noresponce')]));
-                return;
+                return true;
             }
             $userProf = json_decode($userInfo);
             if (isset($userProf->Key) && $userProf->Key === "error") {
                 self::displayErrorModal($request, __('login.error.title'), __('login.error.description', ['error' => $userProf->Value ?? $userInfo]));
-                return;
+                return true;
             }
             if (!self::checkUserProfile($request, $userProf)) {
-                return;
+                return true;
             }
 
             $reason = null;
             $password = Validation::generatePassword();
-            [$username, $userId] = self::addOrUpdateUserProf($userProf, $password);
+            [$username, $userId, $notVerified] = self::addOrUpdateUserProf($userProf, $password);
 
             if (isset($username)) {
                 self::assignUserRoles($request, $userId);
@@ -87,10 +87,40 @@ class RitNod //extends Validation
                 $session->setSessionVar('username', $username);
                 $session->setSessionVar('profileId', $profileId);
 
-                Validation::login($username, $password, $reason, true);
                 if (isset($lang)) {
                     self::setUserLocale($request, $lang);
                 }
+
+                ///////
+                //Договір приєднання
+                if ($notVerified) {
+                    //reload page once
+                    if (!isset($_GET['r'])) { //needed to init server environment (don't know why so)
+                        $request->redirect(null, 'index', null, null, ['profile_id' => $profileId, 'r' => '1']);
+                    }
+                    $userAgreedKey = self::getDogovirKey($request);
+                    $templateMgr = TemplateManager::getManager($request);
+
+                    $agreementText = file_get_contents('templates/ritNod/agreementText.html');
+                    $agreementText = preg_replace('/\<style\>[\S\s]*\<\/style\>/m', '', $agreementText);
+                    $agreementText = str_replace('{$path}', $request->getBaseUrl(), $agreementText);
+
+                    $templateMgr->assign([
+                        'agreementText' => $agreementText,
+                        'name' => $userProf->prizvische_ua . ' ' . $userProf->imya_ua . ' ' . $userProf->pobatkovi_ua,
+                        'name_en' => $userProf->imya_en . ' ' . $userProf->prizvische_en,
+                        'path' => $request->getBaseUrl()
+                    ]);
+                    $request->setCookieVar("dogovir", $userAgreedKey, time() + 60 * 60);
+                    $templateMgr->display('/ritNod/agreement.tpl');
+                    return false;
+                }
+
+                ///////
+                Validation::login($username, $password, $reason, true);
+                // if (isset($lang)) {
+                //     self::setUserLocale($request, $lang);
+                // }
 
                 if ($source) {
                     $request->redirectUrl($source);
@@ -99,6 +129,45 @@ class RitNod //extends Validation
                 }
             }
         }
+        return true;
+    }
+
+    public static function getDogovirKey($request)
+    {
+        $session = $request->getSession();
+        $username = $session->getSessionVar('username');
+        if (!$username) {
+            return null;
+        }
+        $user = Repo::user()->getByUsername($username, true);
+        if (!$user || !$user->getPassword()) {
+            return null;
+        }
+        return 'k' . md5($user->getPassword() . date('yd'));
+    }
+
+    public static function verifyUser($request)
+    {
+        $session = $request->getSession();
+        $username = $session->getSessionVar('username');
+        if (!$username) {
+            $request->redirect(null, 'login', 'signOut');
+        }
+        $user = Repo::user()->getByUsername($username, true);
+        if (!$user || !$user->getPassword()) {
+            $request->redirect(null, 'login', 'signOut');
+        }
+
+        $user->setDateValidated(Core::getCurrentDate()); //Ознака Договору приєднання 
+        $password  = Validation::generatePassword();
+        $user->setPassword(Validation::encryptCredentials($username, $password));
+        $user->setMustChangePassword(0);
+
+        Repo::user()->edit($user);
+
+        $reason = null;
+        Validation::login($username, $password, $reason, true);
+        $request->redirect(null, "index");
     }
 
     public static function checkUserProfile($request, $userProf)
@@ -163,7 +232,7 @@ class RitNod //extends Validation
         $affiliation = $userProf->full_name_inst;
         $affiliationEn = $userProf->full_name_inst_en;
         $orcid = $userProf->ORCID;
-        if($orcid && !str_contains(strtolower($orcid), 'orcid.org')) {
+        if ($orcid && !str_contains(strtolower($orcid), 'orcid.org')) {
             $orcid = 'https://orcid.org/' . $orcid;
         }
 
@@ -174,8 +243,12 @@ class RitNod //extends Validation
         $user = Repo::user()->getByUsername($username, true);
 
         $newUser = true;
+        $notVerified = true;
         if (isset($user)) {
             $newUser = false;
+            if ($user->getDateValidated()) {
+                $notVerified = false;
+            }
         }
 
         // New user
@@ -228,7 +301,7 @@ class RitNod //extends Validation
 
         // self::assignUserRoles($request, $userId);
 
-        return [$username, $userId];
+        return [$username, $userId, $notVerified];
     }
 
     public static function assignModerator(Request $request, Submission $submission):bool
