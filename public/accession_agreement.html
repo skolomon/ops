@@ -1,0 +1,16 @@
+<style>
+body, html {
+    margin: 0;
+}
+#theContent {
+    margin: 1.25rem 2.5rem;
+}
+</style>
+<script>
+    fetch("../templates/ritNod/agreementText.html")
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById("theContent").innerHTML = html;
+            });
+</script>
+<div id = "theContent"></div>
