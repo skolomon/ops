@@ -95,7 +95,7 @@ msgid "submission.numberOfVersions"
 msgstr "Версії: {$numberOfVersions}"
 
 msgid "submission.dates"
-msgstr "Надіслано {$submitted} - Posted {$published}"
+msgstr "Надіслано {$submitted} - Опубліковано {$published}"
 
 msgid "publication.galley.downloads"
 msgstr "Завантаження: {$downloads}"
