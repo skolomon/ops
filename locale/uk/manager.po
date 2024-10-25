@@ -557,3 +557,6 @@ msgstr ""
 
 msgid "manager.setup.serverAbbreviation"
 msgstr "Абревіатура сервера"
+
+msgid "doi.readerDisplayName"
+msgstr "DOI"

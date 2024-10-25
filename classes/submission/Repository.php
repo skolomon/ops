@@ -26,6 +26,8 @@ use PKP\db\DAORegistry;
 use PKP\doi\exceptions\DoiException;
 use PKP\tombstone\DataObjectTombstoneDAO;
 
+use PKP\ritNod\PKPRitNodHelpers;
+
 class Repository extends \PKP\submission\Repository
 {
     /** @copydoc \PKP\submission\Repository::$schemaMap */
@@ -116,6 +118,18 @@ class Repository extends \PKP\submission\Repository
         // Preprint
         $publication = $submission->getCurrentPublication();
 
+        $publUrl = Application::get()->getDispatcher()->url(
+            Application::get()->getRequest(),
+            Application::ROUTE_PAGE,
+            $context->getData('urlPath'),
+            'preprint',
+            'view',
+            $submission->getId()
+        );
+        //skolomon: get from DataCite
+        return PKPRitNodHelpers::registerDoiOnDataCite($context, $publication, $publUrl);
+
+        //skolomom: unreachable code:
         $doiCreationFailures = [];
         if ($context->isDoiTypeEnabled(Repo::doi()::TYPE_PUBLICATION) && empty($publication->getData('doiId'))) {
             try {
