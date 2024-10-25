@@ -39,6 +39,10 @@
 </header>
 
 <style>
+	body {
+		font-family: sans-serif;
+		/* height: 100vh; */
+	}
 	h1.cmp_welcome {
 		margin-block: 2rem!important;
 		font-size: 1.75rem;
@@ -275,6 +279,10 @@
 	}
 	.agreement h2, .agreement h2 *{
 		font-size: 1.4rem;
+	}
+	.agreement .MsoFootnoteText, .agreement .MsoFootnoteText * {
+		font-size: 1rem!important;
+		line-height: 1.25;
 	}
 </style>
 </body>
