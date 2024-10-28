@@ -236,7 +236,7 @@ msgid "about.onlineSubmissions.register"
 msgstr "зареєструватися"
 
 msgid "about.onlineSubmissions.registrationRequired"
-msgstr "{$login} або {$register}, щоб зробити подання."
+msgstr "<a href=\"https://opensi.nas.gov.ua/?go_to=arxiv&lang=ua\">Увійдіть</a>, щоб зробити подання."
 
 msgid "about.onlineSubmissions.submissionActions"
 msgstr "<ul style="margin-block:0"><li>{$newSubmission}, або</li>"
