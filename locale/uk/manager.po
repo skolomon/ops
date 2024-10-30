@@ -394,7 +394,7 @@ msgid "manager.setup.resetPermissions.success"
 msgstr "Дозволи попереднього друку успішно скинуто."
 
 msgid "grid.genres.title.short"
-msgstr "компоненти"
+msgstr "Компоненти"
 
 msgid "grid.genres.title"
 msgstr "Компоненти препринтів"

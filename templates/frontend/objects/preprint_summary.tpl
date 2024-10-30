@@ -102,20 +102,29 @@
 
 	{if !$hideGalleys}
 		<ul class="galleys_links">
+			{assign var="more" value=false} {*skolomon *}
 			{foreach from=$preprint->getGalleys() item=galley}
+				{assign var="file" value=$galley->getFile()}
+				{assign var="supplementary" value=false}
 				{if $primaryGenreIds}
-					{assign var="file" value=$galley->getFile()}
+					{* {assign var="file" value=$galley->getFile()} *}
 					{if !$galley->getRemoteUrl() && !($file && in_array($file->getGenreId(), $primaryGenreIds))}
 						{continue}
 					{/if}
 				{/if}
-				<li>
+				{if $file && $file->getGenreId() != 1}
+					{assign var="more" value=true}
+					{assign var="supplementary" value=true}
+					{* {continue} *}
+				{/if}
+				<li class="{if $supplementary}obj_galley_link_li_supplementary{/if}">
 					{assign var="hasPreprintAccess" value=$hasAccess}
 					{if $currentContext->getSetting('publishingMode') == \APP\server\Server::PUBLISHING_MODE_OPEN}
 						{assign var="hasPreprintAccess" value=1}
 					{/if}
 					{assign var="id" value="preprint-{$preprint->getId()}-galley-{$galley->getId()}"}
-					{include file="frontend/objects/galley_link.tpl" parent=$preprint id=$id labelledBy="{$id} preprint-{$preprint->getId()}" hasAccess=$hasPreprintAccess}
+					{include file="frontend/objects/galley_link.tpl" parent=$preprint id=$id labelledBy="{$id} preprint-{$preprint->getId()}" 
+						hasAccess=$hasPreprintAccess isSupplementary=$supplementary}
 				</li>
 			{/foreach}
 		</ul>
