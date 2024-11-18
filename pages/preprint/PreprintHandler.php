@@ -245,6 +245,9 @@ class PreprintHandler extends Handler
                 if (!$remoteUrl && !$file) {
                     continue;
                 }
+                if ($file && $file->isDogovirFile()) {
+                    continue;
+                }
                 if ($remoteUrl || in_array($file->getGenreId(), $primaryGenreIds)) {
                     $primaryGalleys[] = $galley;
                 } elseif (in_array($file->getGenreId(), $supplementaryGenreIds)) {

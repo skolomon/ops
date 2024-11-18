@@ -99,8 +99,10 @@ class SubmissionHandler extends PKPSubmissionHandler
 
         parent::complete($args, $request, $submission);
 
-        //skolomon
-        RitNod::assignModerator($request, $submission);
+        // //skolomon
+        if(!RitNod::assignModerator($request, $submission)) {
+            RitNod::informAdminNoCurator($request->getContext(), $submission);
+        }
     }
 
     protected function getSubmittingTo(Context $context, Submission $submission, array $sections, LazyCollection $categories): string

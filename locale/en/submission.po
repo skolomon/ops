@@ -218,7 +218,7 @@ msgid "submission.licenseSection.description"
 msgstr "Please select the license to apply to your preprint when it is posted."
 
 msgid "submission.licenseUrl.missing"
-msgstr "No license selected."
+msgstr "No license selected. By default the <i>'CC Attribution-NonCommercial-NoDerivatives 4.0'</i> license will be assigned."
 
 msgid "submission.submit.complete.canPost"
 msgstr "Thank you for submitting your preprint. You can now <a href=\"{$workflowUrl}\">post your preprint</a> publicly."

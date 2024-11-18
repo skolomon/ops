@@ -31,6 +31,9 @@ use PKP\log\SubmissionEmailLogEntry;
 use APP\template\TemplateManager;
 use Illuminate\Support\Facades\Mail;
 
+use PKP\notification\NotificationSubscriptionSettingsDAO;
+use PKP\mail\mailables\SubmissionNeedsEditor;
+
 class RitNod //extends Validation
 {
     public static function loginFromRitNod($request)
@@ -323,32 +326,32 @@ class RitNod //extends Validation
                 && $stageAssignment->getSubmissionId() == $submission->getId()
                 && $stageAssignment->getUserGroupId() == $userGroupId)
             {
-                return false; //already assigned
+                return true; //already assigned
             }
         }
 
-        //Look up Moderators in RIT NOD
-        $url = "https://opensi.nas.gov.ua/all/GetCuratorsPreprint";
+        // //Look up Moderators in RIT NOD
+        // $url = "https://opensi.nas.gov.ua/all/GetCuratorsPreprint";
 
-        $body = http_build_query(['token' => $profileId]);
-        $opts = [
-            'http' => [
-                // 'method'=>"GET",
-                'content' => $body
-            ]
-        ];
-        $context = stream_context_create($opts);
+        // $body = http_build_query(['token' => $profileId]);
+        // $opts = [
+        //     'http' => [
+        //         // 'method'=>"GET",
+        //         'content' => $body
+        //     ]
+        // ];
+        // $context = stream_context_create($opts);
 
-        $moderResp = file_get_contents($url, false, $context);
+        // $moderResp = file_get_contents($url, false, $context);
 
-        if (!$moderResp || strpos($moderResp, "error") !== false) {
-            return false;
-        }
+        // if (!$moderResp || strpos($moderResp, "error") !== false) {
+        //     return false;
+        // }
 
-        $moderArr = json_decode($moderResp);
-        if (gettype($moderArr) !== 'array') {
-            return false;
-        }
+        // $moderArr = json_decode($moderResp);
+        // if (gettype($moderArr) !== 'array') {
+        //     return false;
+        // }
 
         $recommendOnly = false;
         $canChangeMetadata = false;
@@ -357,10 +360,24 @@ class RitNod //extends Validation
         $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
 
         // foreach ($moderArr as $moderInfo) {
-        $moderCnt = count($moderArr);
-        if($moderCnt>0) {
-            $moderInfo = $moderArr[rand(0, $moderCnt - 1)]; //pick random moderator
-            [, $userId] = self::addOrUpdateUserProf($moderInfo);
+        // $moderCnt = count($moderArr);
+
+        $curators = Repo::user()
+            ->getCollector()
+            ->filterByRoleIds([Role::ROLE_ID_SUB_EDITOR])
+            ->filterByContextIds([$request->getContext()->getId()])
+            ->getMany();
+
+        if (!$curators->count()) {
+            return false;
+        }
+
+        foreach ($curators as $curator) {
+
+        // if($moderCnt>0) {
+            // $moderInfo = $moderArr[rand(0, $moderCnt - 1)]; //pick random moderator
+            // [, $userId] = self::addOrUpdateUserProf($moderInfo);
+            $userId = $curator->getId();
             if (isset($userId)) {
                 self::assignUserRoles($request, $userId, true);
                 //add user to submission as moderator
@@ -427,6 +444,84 @@ class RitNod //extends Validation
                 ]);
                 Repo::eventLog()->add($eventLog);
             }
+        }
+        // else {
+        //     return false;
+        // }
+        return true;
+    }
+
+    public static function informAdminNoCurator($context, $submission) {
+        $managers = Repo::user()
+            ->getCollector()
+            ->filterByRoleIds([Role::ROLE_ID_MANAGER])
+            ->filterByContextIds([$context->getId()])
+            ->getMany();
+
+        if (!$managers->count()) {
+            return;
+        }
+
+        $notificationManager = new NotificationManager();
+        /** @var NotificationSubscriptionSettingsDAO $notificationSubscriptionSettingsDao */
+        $notificationSubscriptionSettingsDao = DAORegistry::getDAO('NotificationSubscriptionSettingsDAO');
+        /** @var SubmissionEmailLogDAO $logDao */
+        $logDao = DAORegistry::getDAO('SubmissionEmailLogDAO');
+        foreach ($managers as $manager) {
+
+            // Send notification
+            $notification = $notificationManager->createNotification(
+                Application::get()->getRequest(),
+                $manager->getId(),
+                Notification::NOTIFICATION_TYPE_EDITOR_ASSIGNMENT_REQUIRED,
+                $context->getId(),
+                Application::ASSOC_TYPE_SUBMISSION,
+                $submission->getId(),
+                Notification::NOTIFICATION_LEVEL_TASK
+            );
+
+            // Check if subscribed to this type of emails
+            $unsubscribed = in_array(
+                Notification::NOTIFICATION_TYPE_SUBMISSION_SUBMITTED,
+                $notificationSubscriptionSettingsDao->getNotificationSubscriptionSettings(
+                    NotificationSubscriptionSettingsDAO::BLOCKED_EMAIL_NOTIFICATION_KEY,
+                    $manager->getId(),
+                    $context->getId()
+                )
+            );
+
+            if ($unsubscribed) {
+                continue;
+            }
+
+            // Send email
+            $emailTemplate = Repo::emailTemplate()->getByKey($context->getId(), SubmissionNeedsEditor::getEmailTemplateKey());
+            $mailable = new SubmissionNeedsEditor($context, $submission);
+
+            // The template may not exist, see pkp/pkp-lib#9217; FIXME remove after #9202 is resolved
+            if (!$emailTemplate) {
+                $emailTemplate = Repo::emailTemplate()->getByKey($context->getId(), 'NOTIFICATION');
+                $request = Application::get()->getRequest();
+                $mailable->addData([
+                    'notificationContents' => $notificationManager->getNotificationContents($request, $notification),
+                    'notificationUrl' => $notificationManager->getNotificationUrl($request, $notification),
+                ]);
+            }
+
+            $mailable
+                ->from($context->getData('contactEmail'), $context->getData('contactName'))
+                ->subject($emailTemplate->getLocalizedData('subject'))
+                ->body($emailTemplate->getLocalizedData('body'))
+                ->recipients([$manager]);
+
+            Mail::send($mailable);
+
+            // Log email
+            $logDao->logMailable(
+                SubmissionEmailLogEntry::SUBMISSION_EMAIL_NEEDS_EDITOR,
+                $mailable,
+                $submission
+            );
         }
     }
 

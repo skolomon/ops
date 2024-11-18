@@ -112,6 +112,9 @@
 						{continue}
 					{/if}
 				{/if}
+				{if $file && $file->isDogovirFile()}
+					{continue}
+				{/if}
 				{if $file && $file->getGenreId() != 1}
 					{assign var="more" value=true}
 					{assign var="supplementary" value=true}
