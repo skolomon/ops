@@ -173,6 +173,7 @@ msgstr ""
 
 msgid "submission.layout.galley.remotelyHostedContent"
 msgstr "Ця гранка буде доступна на окремому веб-сайті."
+"<br><b>Не використовуйте</b> цю опцію для файла з текстом препринту чи Договором між співавторами."
 
 msgid "submission.layout.galley.remoteURL"
 msgstr "URL-адреса віддалено розміщеного вмісту"
@@ -218,7 +219,7 @@ msgid "archive.archivesPageNumber"
 msgstr "Архів - Стор {$pageNumber}"
 
 msgid "about.contact"
-msgstr "Контакт"
+msgstr "Наші контакти"
 
 msgid "about.aboutContext"
 msgstr "Про сервер"

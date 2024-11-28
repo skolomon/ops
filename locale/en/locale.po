@@ -169,6 +169,7 @@ msgstr "Sorry, you do not have administrative rights over this user. This may be
 
 msgid "submission.layout.galley.remotelyHostedContent"
 msgstr "This galley will be available at a separate website."
+"<br><b>Do not use</b> this option for Preprint text or for Agreement between coauthors."
 
 msgid "submission.layout.galley.remoteURL"
 msgstr "URL of remotely-hosted content"

@@ -226,10 +226,10 @@ msgid "submission.licenseUrl.missing"
 msgstr "Ліцензію не обрано. По замовчанню буде призначено ліцензію <i>'Із зазначенням авторства – Некомерційна – Без похідних творів 4.0 (CC Attribution-NonCommercial-NoDerivatives 4.0)'</i>."
 
 msgid "submission.wizard.confirmSubmit"
-msgstr "Ви впевнені, що хочете подати <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, куратор перегляне препринт, перш ніж опублікувати його в мережі."
+msgstr "Ви впевнені, що хочете подати ваш препринт <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, куратор перегляне препринт, перш ніж опублікувати його на сайті."
 
 msgid "submission.wizard.confirmSubmit.canPublish"
-msgstr "Ви впевнені, що хочете подати <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, ви зможете переглянути своє подання та опублікувати його в Інтернеті."
+msgstr "Ви впевнені, що хочете подати <strong>{$title}</strong> до <strong>{$context}</strong>? Після того, як ви подасте, ви зможете переглянути своє подання та опублікувати його на сайті."
 
 msgid "submission.licenseSection.description"
 msgstr "Будь ласка, виберіть ліцензію для застосування до вашого препринта, коли він буде опублікований."
