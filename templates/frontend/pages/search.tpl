@@ -28,6 +28,10 @@
 	<h1>
 		{translate key="common.search"}
 	</h1>
+	<div>
+		{translate key="search.recommendations"}
+		<span> &nbsp; </span>
+	</div>
 
 	{capture name="searchFormUrl"}{url escape=false}{/capture}
 	{assign var=formUrlParameters value=[]}{* Prevent Smarty warning *}

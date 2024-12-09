@@ -307,9 +307,11 @@ class RitNod //extends Validation
         return [$username, $userId, $notVerified];
     }
 
+    //NOT USED!
     public static function assignModerator(Request $request, Submission $submission):bool
     {
-        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); /** @var StageAssignmentDAO $stageAssignmentDao */
+        $stageAssignmentDao = DAORegistry::getDAO('StageAssignmentDAO'); 
+        /** @var StageAssignmentDAO $stageAssignmentDao */
         $contextId = $request->getContext()->getId();
         $defaultModerGroup = Repo::userGroup()->getByRoleIds([Role::ROLE_ID_SUB_EDITOR], $contextId, true)->first();
         $userGroupId = $defaultModerGroup->getId();
@@ -451,6 +453,7 @@ class RitNod //extends Validation
         return true;
     }
 
+    //NOT USED!
     public static function informAdminNoCurator($context, $submission) {
         $managers = Repo::user()
             ->getCollector()
