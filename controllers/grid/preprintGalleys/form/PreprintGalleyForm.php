@@ -154,7 +154,10 @@ class PreprintGalleyForm extends Form
                 'urlRemote' => $this->_preprintGalley->getData('urlRemote'),
             ];
         } else {
-            $this->_data = [];
+            $this->_data = [
+                'label' => 'PDF',
+                'locale' => $this->_submission->getCurrentPublication()->getData('locale')
+            ];
         }
     }
 
