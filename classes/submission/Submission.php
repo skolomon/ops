@@ -237,7 +237,8 @@ class Submission extends PKPSubmission
             'dateStart' => StatisticsHelper::STATISTICS_EARLIEST_DATE,
             'dateEnd' => date('Y-m-d', strtotime('yesterday')),
             'contextIds' => [$this->getData('contextId')],
-            'fileIds' => $fileIds,
+            // 'fileIds' => $fileIds,
+            'submissionFileIds' => $fileIds,
         ];
         $metrics = Services::get('publicationStats')
             ->getQueryBuilder($filters)

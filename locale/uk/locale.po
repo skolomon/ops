@@ -98,7 +98,7 @@ msgid "submission.dates"
 msgstr "Надіслано {$submitted} - Опубліковано {$published}"
 
 msgid "publication.galley.downloads"
-msgstr "Завантаження: {$downloads}"
+msgstr "Завантажень: {$downloads}"
 
 msgid "context.contexts"
 msgstr "Сервери"
